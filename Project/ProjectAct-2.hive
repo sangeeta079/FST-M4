@@ -1,0 +1,9 @@
+CREATE TABLE epsdIV (line STRING);
+
+LOAD DATA LOCAL INPATH '/root/inputs/episodeIV_dialouges.txt' INTO TABLE epsdIV;
+
+INSERT OVERWRITE DIRECTORY 'hdfs:///user/root/outputs/epsdIVoutput'
+SELECT COUNT(*) FROM epsdIV WHERE INSTR(line, 'Luke')>0;
+
+INSERT OVERWRITE LOCAL DIRECTORY '/home/hadoop/Assignment'
+SELECT COUNT(*) FROM epsdIV WHERE INSTR(line, 'Luke')>0;
